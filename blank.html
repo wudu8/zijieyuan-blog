@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Document</title>
+  </head>
+  <body>
+    <my-info></my-info>
+  </body>
+  <script>
+    class MyInfoTag extends HTMLElement {
+      constructor() {
+        super();
+
+        var image = document.createElement("img");
+        image.src =
+          "https://gips1.baidu.com/it/u=1658389554,617110073&fm=3028&app=3028&f=JPEG&fmt=auto?w=1280&h=960";
+        image.width = 40;
+        image.classList.add("image");
+
+        var container = document.createElement("div");
+        container.classList.add("container");
+
+        var name = document.createElement("p");
+        name.classList.add("name");
+        name.innerText = "Name: ZiJieYuan";
+
+        var email = document.createElement("p");
+        email.classList.add("email");
+        email.innerText = "Email: ZiJieYuan@163.com";
+
+        var button = document.createElement("button");
+        button.classList.add("button");
+        button.innerText = "Follow";
+
+        container.append(name, email, button);
+        this.append(image, container);
+      }
+    }
+    window.customElements.define("my-info", MyInfoTag);
+  </script>
+</html>
