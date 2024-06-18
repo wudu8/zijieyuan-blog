@@ -13,9 +13,7 @@
     "docs:preview": "npm run docs:thirdpart && vitepress preview",
     "submodules": "ts-node-esm ./script/gitmodules/index.js"
   },
-  "dependencies": {
-    "git": "^0.1.5"
-  },
+  "dependencies": {},
   "devDependencies": {
     "chalk": "^5.3.0",
     "child_process": "^1.0.2",
