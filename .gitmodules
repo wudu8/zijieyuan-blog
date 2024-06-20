@@ -4,3 +4,6 @@
 [submodule "thirdpartys/es6tutorial"]
 	path = thirdpartys/es6tutorial
 	url = git@github.com:ruanyf/es6tutorial.git
+[submodule "zijieyuan-blog-pages"]
+	path = zijieyuan-blog-pages
+	url = git@github.com:wudu8/zijieyuan-blog-pages.git

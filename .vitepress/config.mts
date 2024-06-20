@@ -6,8 +6,8 @@ import { sidebar, nav } from "./get_sidebar.js";
 export default defineConfig({
   title: "字节猿的博客",
   description: "A VitePress Site",
-  base: "/",
-  outDir: "./dist",
+  base: "/zijieyuan-blog-pages/",
+  outDir: "./zijieyuan-blog-pages",
   lastUpdated: false,
   ignoreDeadLinks: true, // 当设置为 true 时，VitePress 不会因为死链而导致构建失败
   head: [["link", { rel: "icon", href: "./favicon.ico" }]],
