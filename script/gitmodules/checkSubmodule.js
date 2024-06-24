@@ -7,19 +7,22 @@
  */
 
 import { existsSync, rm } from "node:fs";
+import { resolve } from "node:path";
 import chalk from "chalk";
 
-import { consolePrefix, SubmoduleRoot, gitmodulesFile } from "./const.js";
-import { executeCommand } from "./utils.js";
+import { consolePrefix, projectRoot, gitmodulesFile } from "./const.js";
+import { executeCommand, getSubmoduleDir } from "./utils.js";
 
 /**
  * 检查是否存在Git Submodule仓库，存在则更新，不存在则删除
  */
-export async function checkSubmodule() {
+export async function checkSubmodule(type) {
+  const dir = getSubmoduleDir(type);
+  const submoduleRoot = resolve(projectRoot, dir);
   if (existsSync(gitmodulesFile)) {
     await executePullSubmodule();
   } else {
-    await executeRemoveSubmodule();
+    await executeRemoveSubmodule(submoduleRoot);
   }
 }
 
@@ -29,7 +32,7 @@ export async function checkSubmodule() {
 async function executeRemoveSubmodule() {
   // 删除Git Submodule仓库
   return new Promise((res) => {
-    rm(SubmoduleRoot, { recursive: true, force: true }, (err) => {
+    rm(submoduleRoot, { recursive: true, force: true }, (err) => {
       if (err) {
         console.log(chalk.red(consolePrefix, err));
       } else {
@@ -49,6 +52,8 @@ async function executeRemoveSubmodule() {
  * 更新Git Submodule仓库
  */
 async function executePullSubmodule() {
+  console.log(consolePrefix, `正在更新Git Submodule仓库...`);
+  console.log(consolePrefix, `如果没有搭建VPN访问GitHub，可能较慢，请耐心等候...`);
   const success = await executeCommand(
     "git submodule update --init --recursive"
   );
