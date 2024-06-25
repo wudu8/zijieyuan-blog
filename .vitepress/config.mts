@@ -1,16 +1,48 @@
 import { defineConfig } from "vitepress";
-
+import mdItCustomAttrs from "markdown-it-custom-attrs";
 import { sidebar, nav } from "./get_sidebar.js";
+
+const base = "/zijieyuan-blog-pages/";
 
 // https://vitepress.dev/reference/site-config
 export default defineConfig({
   title: "字节猿的博客",
   description: "A VitePress Site",
-  base: "/zijieyuan-blog-pages/",
+  base: base,
   outDir: "./zijieyuan-blog-pages",
   lastUpdated: false,
   ignoreDeadLinks: true, // 当设置为 true 时，VitePress 不会因为死链而导致构建失败
-  head: [["link", { rel: "icon", href: "./favicon.ico" }]],
+  markdown: {
+    config: (md) => {
+      // use more markdown-it plugins!
+      md.use(mdItCustomAttrs, "image", {
+        "data-fancybox": "gallery",
+      });
+    },
+  },
+  head: [
+    ["link", { rel: "icon", href: `${base}favicon.ico` }],
+    [
+      "link",
+      {
+        rel: "stylesheet",
+        href: `${base}global.css`,
+      },
+    ],
+    [
+      "link",
+      {
+        rel: "stylesheet",
+        href: `${base}imgstyle/index.css`,
+      },
+    ],
+    [
+      "script",
+      {
+        src: `${base}imgstyle/index.js`,
+      },
+    ],
+  ],
   themeConfig: {
     // https://vitepress.dev/reference/default-theme-config
     logo: "/avatar.png",

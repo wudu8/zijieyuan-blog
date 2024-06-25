@@ -14,7 +14,9 @@
     "refer": "ts-node-esm ./script/gitmodules/index.js refer",
     "pages": "ts-node-esm ./script/gitmodules/index.js pages"
   },
-  "dependencies": {},
+  "dependencies": {
+    "markdown-it-custom-attrs": "^1.0.2"
+  },
   "devDependencies": {
     "chalk": "^5.3.0",
     "child_process": "^1.0.2",
